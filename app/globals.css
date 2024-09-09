@@ -9,6 +9,9 @@
 .icon{
   width: 40px;
 }
+.icon2{
+  width: 80px;
+}
 
 body{
 width: 100%;
@@ -25,14 +28,53 @@ width: 100%;
 }
 
 
+input{
+  width: 60%;
+  border: 1px solid #D1D5DB;
+  border-radius: 5px;
+  height: 33px;
+  background: #F9FAFB;
+  
+
+}
+
+textarea{
+ width: 80%;
+  border: 1px solid #D1D5DB;
+  border-radius: 5px;
+  min-height: 200px;
+}
 
 
-@media (min-width: 300px) and (max-width: 460px) {
+
+
+
+@media (min-width: 400px) and (max-width: 660px) {
   #cabezera{
   
     height: 100px;
     background-image: linear-gradient(to top, #051037, #021b40, #032648, #09314f, #143b55);  width: 100%;
   }
+
+  input{
+    width: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 5px;
+    height: 33px;
+    background: #F9FAFB;
+    
+  
+  }
+  
+  textarea{
+   width: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 5px;
+    min-height: 200px;
+  }
+  
+  
   
 }
+
 
