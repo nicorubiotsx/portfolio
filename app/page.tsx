@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import { skills, contactSOcial, Profile } from "./imagesList";
-import { useState } from "react";
 
 export default function Home() {
 
