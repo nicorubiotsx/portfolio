@@ -55,13 +55,13 @@ export default function Home() {
   };
 
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+/*   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Aquí podrías hacer una solicitud POST para enviar los datos
     console.log('Form data submitted:', formData);
   };
 
-
+ */
 
 
 
@@ -155,7 +155,7 @@ export default function Home() {
         <div className="content mt-10">
           <h2 className="text-4xl">EXPERIENCIA LABORAL</h2>
           {
-            empleos.map((empleo: any, index: number) => (
+            empleos.map((empleo: Empleo, index: number) => (
               <div key={index} className="mt-16 experience-detail border border-primary border-2 ">
                 <h3 className="text-lg font-semibold">{empleo.empresa}</h3>
                 <p className="md:text-lg">{empleo.subtitulo}</p>
@@ -241,12 +241,13 @@ export default function Home() {
               <div className="flex flex-row gap-12  md:flex-col ">
                 {
                   contactSOcial.map((social, index) => (
-                    <Image
+                    < Image
                       src={social}
                       width={80}
                       height={80}
                       alt=""
                       className="mt-10"
+                      key={index}
                     />
                   ))
                 }
