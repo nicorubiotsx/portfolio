@@ -55,13 +55,6 @@ export default function Home() {
   };
 
 
-/*   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Aquí podrías hacer una solicitud POST para enviar los datos
-    console.log('Form data submitted:', formData);
-  };
-
- */
 
 
 
@@ -161,7 +154,7 @@ export default function Home() {
                 <p className="md:text-lg">{empleo.subtitulo}</p>
                 <ul className="list-disc pl-5 space-y-2">
                   {
-                    empleo.acciones.map((acc: any, index: number) => (
+                    empleo.acciones.map((acc: string, index: number) => (
                       <li key={index} className="flex items-start space-x-2">
                         <svg className="flex-shrink-0 w-4 h-4 text-pink-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
