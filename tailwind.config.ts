@@ -14,6 +14,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/plugin.cjs"),
+    require('daisyui'),
+  ],
 };
 export default config;

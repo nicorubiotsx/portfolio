@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {Poppins} from 'next/font/google'
+import { Poppins } from 'next/font/google'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -13,7 +13,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const poppins = Poppins({weight:"300",subsets:["latin-ext"]})
+const poppins = Poppins({ weight: "300", subsets: ["latin-ext"] })
 
 
 export const metadata: Metadata = {
@@ -29,9 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} `}
+        className={`${poppins.className}  `}
       >
         {children}
+
+        <script
+          type="text/javascript"
+          src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script>
       </body>
     </html>
   );

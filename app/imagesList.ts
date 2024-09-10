@@ -1,4 +1,3 @@
-import profile from '../img-profile.jpg';
 import js from '../img/js.png';
 import python from '../img/python.png';
 import nodejs from '../img/node.png';
@@ -9,10 +8,13 @@ import css from '../img/css.png';
 import tailwind from '../img/tailwind.png';
 import insta from '../img/insta.png';
 import whatsapp from '../img/wha.png';
-import contactame from '../img/contact.jpg';
+import profile from '../img/myAvatar.png'
 
-const images = {
-  profile,
+
+export const Profile = profile;
+
+export const skills = [
+
   js,
   python,
   nodejs,
@@ -21,9 +23,10 @@ const images = {
   nextjs,
   css,
   tailwind,
-  insta,
-  whatsapp,
-  contactame
-};
+];
 
-export default images;
+export const contactSOcial =[
+  whatsapp,
+  insta
+]
+

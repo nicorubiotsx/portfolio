@@ -52,7 +52,7 @@ textarea{
 @media (min-width: 400px) and (max-width: 660px) {
   #cabezera{
   
-    height: 100px;
+    height: 70px;
     background-image: linear-gradient(to top, #051037, #021b40, #032648, #09314f, #143b55);  width: 100%;
   }
 
