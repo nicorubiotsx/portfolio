@@ -38,23 +38,6 @@ export default function Home() {
 
 
 
-  const [formData, setFormData] = useState({
-    name: '',
-    lastName: '',
-    email: '',
-    number: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-
 
 
 
@@ -206,24 +189,24 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 mt-10">
                   <div className="flex flex-col">
                     <label>Nombre</label>
-                    <input type="text" value={formData.name} onChange={handleChange} />
+                    <input type="text" />
                   </div>
                   <div className="flex flex-col">
                     <label>Apellido</label>
-                    <input value={formData.lastName} onChange={handleChange} />
+                    <input />
                   </div>
                   <div className="flex flex-col">
                     <label>Tú Email</label>
-                    <input value={formData.email} onChange={handleChange} />
+                    <input  />
                   </div>
                   <div className="flex flex-col">
                     <label>Numero Celular</label>
-                    <input type="number" value={formData.number} onChange={handleChange} />
+                    <input type="number" />
                   </div>
                 </div>
                 <div className="flex flex-col">
                   <label>Mensaje</label>
-                  <textarea name="" id="" value={formData.message} onChange={handleChange} />
+                  <textarea name="" id="" />
                 </div>
 
               </form>
