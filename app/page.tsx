@@ -1,15 +1,60 @@
 'use client'
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { skills, contactSOcial, Profile } from "./imagesList";
-import { useState } from "react";
-import {  FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { ChangeEvent, useState } from "react";
+import { Code,  Github, Linkedin, Phone, MapPin, GraduationCap } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader,CardTitle, CardFooter} from "@/components/ui/card";
+import { Accordion ,AccordionItem,AccordionContent,AccordionTrigger} from "@/components/ui/accordion";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import Link from 'next/link';
 
 export default function Home() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  const toggleAccordion = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-};
+
+
+
+  
+
+  interface FormData {
+    name: string;
+    email: string;
+    message: string
+  }
+  
+  const [formData, setFormData] = useState<FormData>({ name: '', email: '', message:'' });
+
+  const handleSubmit =async (e: React.FormEvent) => {
+    e.preventDefault()
+
+
+    // Aquí iría la lógica para enviar el formulario
+    const response = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    const result = await response.json();
+    if(response.ok){
+      setFormData({name:'',email:'',message:''})
+     
+
+    }
+    console.log(result);
+
+  }
+
+
+  const handlechange =(e:ChangeEvent <HTMLInputElement | HTMLTextAreaElement> )=>{
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value })
+  }
+
+
+
 
 
   interface Empleo {
@@ -43,223 +88,288 @@ export default function Home() {
   ]
 
   return (
+    <div className="min-h-screen bg-gray-100 text-gray-900">
+      {/* Header */}
+ 
 
-    <>
-      <header id="cabezera" className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-center text-2xl md:text-5xl text-white font-semibold mb-12 lg:text-7xl ">
-          Ingeniero Informático/Desarrollador
-        </h1>
-        <div className="flex space-x-4">
-          <button className="px-8 py-0.5 border-2 border-black dark:border-white uppercase bg-white text-black transition duration-200 text-sm shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)]">
-            Contactame
-          </button>
-          <button className="px-8 py-0.5 border-2 border-black dark:border-white uppercase bg-white text-black transition duration-200 text-sm shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)]">
-            proyectos
-          </button>
-        </div>
-      </header>
+      {/* Hero Section */}
+      <section className="relative bg-gray-900 text-white py-32">
+  <div
+    className="absolute inset-0 bg-cover bg-center"
+    style={{ backgroundImage: "url('/img/portafolio.png')" }}
+  ></div>
+  <div className="absolute inset-0 bg-black opacity-50"></div>
+  <div className="relative container mx-auto px-4 z-10">
+    <h2 className="text-4xl md:text-5xl font-bold mb-4">Ingeniero de Software</h2>
+    <p className="text-xl mb-8">Creando soluciones innovadoras con código</p>
+    <div className="flex space-x-4">
 
-      <div className="contenedor ">
 
-        <div className="content flex flex-col md:flex-row mt-10">
 
-          <div className="flex-1 flex items-center justify-center">
-            <Image
-              src={Profile}
-              width={380} // Ajusta el tamaño de la imagen
-              height={250} // Ajusta el tamaño de la imagen
-              alt=""
-              className=""
-            />
+
+    </div>
+  </div>
+</section>
+
+
+      {/* About Me Section */}
+      <section className="py-16 bg-white" id="sobremi">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Sobre Mí</h2>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-lg mb-6">
+             
+Hola, soy Nicolás, un ingeniero de software entusiasta con experiencia en desarrollo web y aplicaciones móviles. Aunque sigo aprendiendo y mejorando mis habilidades, me esfuerzo por crear soluciones eficientes utilizando tecnologías modernas.
+            </p>
+            <p className="text-lg mb-6">
+            Me enfoco en escribir código lo más limpio posible y en mejorar la experiencia del usuario, además de optimizar el rendimiento de las aplicaciones cuando es necesario.            </p>
 
           </div>
-
-          <div className="about-info flex-1 p-4">
-            {/* Nombre fuera del acordeón */}
-            <h2 className="text-center text-4xl">Nicolás Rubio</h2>
-
-            {/* Estructura del acordeón */}
-            <div className="join join-vertical w-full">
-              {/* Primera sección del acordeón */}
-              <div className="collapse collapse-arrow join-item border border-primary border-2">
-                <input type="radio" name="my-accordion-4" defaultChecked />
-                <div className="collapse-title text-xl font-medium">
-                  Información Profesional
-                </div>
-                <div className="collapse-content">
-                  <p className="md:text-center text-lg">
-                    Soy ingeniero informático especializado en desarrollo web, apasionado
-                    por enfrentar desafíos y encontrar soluciones creativas. Mi formación
-                    autodidacta me ha permitido abordar proyectos de manera versátil, desde
-                    aplicaciones web complejas hasta interfaces intuitivas. Siempre busco
-                    explorar nuevas tecnologías y enfrentar problemas que me permitan
-                    seguir creciendo profesionalmente. Estoy abierto a nuevas oportunidades
-                    para aplicar mis habilidades y colaborar en proyectos innovadores.
-                  </p>
-                </div>
-              </div>
-
-              {/* Segunda sección del acordeón */}
-              <div className="collapse collapse-arrow join-item border border-primary border-2">
-                <input type="radio" name="my-accordion-4" />
-                <div className="collapse-title text-xl font-medium">
-                  Redes Sociales
-                </div>
-                <div className="collapse-content">
-                  <div className="flex flex-row md:justify-center space-x-4">
-                    <svg
-                      className="icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 448 512"
-                    >
-                      <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
-                    </svg>
-                    <svg
-                      className="icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 496 512"
-                    >
-                      <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.3-1 1.6-3.6 0-5.9-1.6-2.3-4.3-3.3-5.6-2.3zm33.5-3.9c1.6 .6 2.9 2.3 2.9 4.2 0 2-1.3 3.9-2.9 4.2-1.6 .3-3.6-1-4.2-2.9-.3-2 1.3-3.9 4.2-5.2z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+      </section>
 
-        <div className="content mt-10">
-          <h2 className="text-4xl">EXPERIENCIA LABORAL</h2>
-          {
-            empleos.map((empleo: Empleo, index: number) => (
-              <div key={index} className="mt-16 experience-detail border border-primary border-2 " onClick={()=>toggleAccordion(index)}>
-                <h3 className="text-lg font-semibold">{empleo.empresa}</h3>
-
-              
-                    <button className='ml-auto bg-white'>
-                    {expandedIndex === index
-                        ? <FaChevronUp className="text-blue-400 text-2xl" />
-                        : <FaChevronDown className="text-blue-400 text-2xl" />}
-                </button>
-              
-
-                {
-                    expandedIndex ===index && (
-                      <div>
-                             <p className="md:text-lg">{empleo.subtitulo}</p>
-                      <ul className="list-disc pl-5 space-y-2">
-                        {
-                          empleo.acciones.map((acc: string, index: number) => (
-                            <li key={index} className="flex items-start space-x-2">
-                              <svg className="flex-shrink-0 w-4 h-4 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
-                              </svg>
-                              <span className="md:text-lg">{acc}</span>
-                            </li>
-                          ))
-                        }
-                      </ul>
-
-                      </div>
-                 
-                      
-                    )}
+      {/* Education Section */}
+      <section className="py-16 bg-gray-100" id="estudios">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Educación</h2>
+          <div className="max-w-3xl mx-auto">
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <GraduationCap className="mr-2" />
+                  Ingeniería en Informatica
+                </CardTitle>
+                <CardDescription>AIEP, 2014-2019</CardDescription>
+              </CardHeader>
           
+            </Card>
+    
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Code className="mr-2" />
+                  Certificaciones
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside">
+                  <li>React de 0 a experto - Udemy</li>
+                  <li>Nodejs-Udemy</li>
+            
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-16 bg-white" id="skills">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Mis Habilidades</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'JavaScript', icon: '🌟' },
+              { name: 'React', icon: '⚛️' },
+              { name: 'Node.js', icon: '🚀' },
+              { name: 'Python', icon: '🐍' },
+              { name: 'CSS', icon: '🎨' },
+              { name: 'HTML', icon: '🌐' },
+              { name: 'Git', icon: '🔀' },
+              { name: 'SQL', icon: '🗄️' }
+            ].map((skill) => (
+              <div key={skill.name} className="bg-gray-100 rounded-lg p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                <div className="text-4xl mb-2">{skill.icon}</div>
+                <div className="font-semibold">{skill.name}</div>
               </div>
-
-            ))
-          }
-
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="content">
-
-
-        </div>
-
-
-        <div className="content mt-10">
-          <h2 className=" text-4xl">skills</h2>
-          <h3>A continuación, presento las tecnologías con las que he trabajado y en las que tengo experiencia:
-          </h3>
-          <div className=" grid grid-cols-2  md:grid-cols-4 gap-4 mt-10">
+      {/* Work Experience Section */}
+      <section className="py-16 bg-gray-100" id="experiencia">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Experiencia Laboral</h2>
+          <Accordion type="single" collapsible className="w-full">
             {
-              skills.map((imax, index) => (
-                <div key={index} className="">
-                  <Image
-                    src={imax}
-                    width={100}
-                    height={100}
-                    alt="" />
-                </div>
+              empleos.map((empleo,index)=>(
+                     <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger>{empleo.empresa}</AccordionTrigger>
+              <AccordionContent>
+                <p className="mb-2">{empleo.subtitulo}</p>
+                <ul className="list-disc list-inside">
+                  <li>{empleo.acciones}</li>
+               
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+
               ))
             }
-          </div>
-        </div>
-
-
+       
+      
         
-        <div className="content mt-20">
-          <div className="flex flex-col md:flex-row">
-            <div className="basis-3/4">
-              <h2 className="text-4xl">Contactame</h2>
-              <form  >
-                <div className="grid grid-cols-1 md:grid-cols-2 mt-10">
-                  <div className="flex flex-col">
-                    <label>Nombre</label>
-                    <input type="text" />
-                  </div>
-                  <div className="flex flex-col">
-                    <label>Apellido</label>
-                    <input />
-                  </div>
-                  <div className="flex flex-col">
-                    <label>Tú Email</label>
-                    <input />
-                  </div>
-                  <div className="flex flex-col">
-                    <label>Numero Celular</label>
-                    <input type="number" />
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <label>Mensaje</label>
-                  <textarea name="" id="" />
-                </div>
+          </Accordion>
+        </div>
+      </section>
 
-              </form>
-            </div>
+      {/* Projects Section */}
+      <section className="py-16 bg-white" id="proyectos">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8 text-center">Mis Proyectos</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+ 
+        <Card className="overflow-hidden shadow-lg">
+          <div className="relative h-48 bg-gray-300"> {/* Clase relative añadida */}
+            <Image
+              src={'/img/jaramotors.png'}
+              alt=""
+              fill
+              className="object-cover" 
+            />
+          </div>
+          <CardHeader>
+            <CardTitle>Proyecto</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600">
+              Descripción breve del proyecto  Aquí puedes detallar las tecnologías utilizadas y los desafíos superados.
+            </p>
+          </CardContent>
+          <CardFooter>
+          <a href="https://jaramotors.cl"  target="_blank" >jaramotors</a>
+          </CardFooter>
+        </Card>
 
-            <div className="basis-1/4">
-              <h1 className="text-5xl">Mis Redes</h1>
-              <div className="flex flex-row gap-12  md:flex-col ">
-                {
-                  contactSOcial.map((social, index) => (
-                    < Image
-                      src={social}
-                      width={80}
-                      height={80}
-                      alt=""
-                      className="mt-10"
-                      key={index}
+        <Card className="overflow-hidden shadow-lg">
+          <div className="relative h-48 bg-gray-300"> {/* Clase relative añadida */}
+            <Image
+              src={'/img/ajpielgenuina.png'}
+              alt=""
+              fill
+              className="object-cover" 
+            />
+          </div>
+          <CardHeader>
+            <CardTitle>Proyecto</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600">
+              Descripción breve del proyecto  Aquí puedes detallar las tecnologías utilizadas y los desafíos superados.
+            </p>
+          </CardContent>
+          <CardFooter>
+          <a href="https://ajpielgenuina.cl"  target="_blank" >ajpielgenuina</a>
+          </CardFooter>
+        </Card>
+ 
+    </div>
+  </div>
+</section>
+
+
+      {/* Contact Form Section */}
+      <section className="py-16 bg-gray-100" id="contacto">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Contáctame</h2>
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle>Envíame un mensaje</CardTitle>
+                <CardDescription>Completa el formulario y me pondré en contacto contigo pronto.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Nombre</Label>
+                    <Input
+                    name="name"
+                      id="name"
+                      placeholder="Tu nombre"
+                      value={formData.name}
+                      onChange={handlechange}
+                      required
+                      type="text"
                     />
-                  ))
-                }
-              </div>
-
-            </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      name="email"
+                      type="email"
+                      placeholder="tu email"
+                      value={formData.email}
+                      onChange={handlechange}
+                      required
+                      
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Mensaje</Label>
+                    <Textarea
+                      name="message"
+                      placeholder="Tu mensaje"
+                      value={formData.message}
+                      onChange={handlechange}
+                      required
+                    />
+                  </div>
+                  <Button type="submit" className="w-full">Enviar mensaje</Button>
+                </form>
+              </CardContent>
+            </Card>
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle>Información de contacto</CardTitle>
+                <CardDescription>Otras formas de ponerte en contacto conmigo.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+             
+                <div className="flex items-center space-x-2">
+                  <Phone className="h-5 w-5 text-gray-500" />
+                  <a href="tel:+56934640426"> +56934640426</a>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-5 w-5 text-gray-500" />
+                  <span>Las Cabras, Chile</span>
+                </div>
+                <div className="flex space-x-4 mt-4">
+                <Link href="https://github.com/nicorubiotsx" target="_blank">
+  <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
+    <Github className="mr-2 h-4 w-4" /> GitHub
+  </Button>
+</Link>
+<Link href="https://www.linkedin.com/in/nicolas-rubio/" target="_blank">
+  <Button variant="outline" className="bg-white text-gray-900 hover:bg-gray-200">
+    <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
+  </Button>
+</Link>
+             
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
+      </section>
 
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p>&copy; 2024 Nicolas Rubio. Todos los derechos reservados.</p>
+          <div className="mt-4 flex justify-center space-x-4">
+            <a href="#" className="hover:text-gray-300">Inicio</a>
+            <a href="#sobremi" className="hover:text-gray-300">Sobre mí</a>
+            <a href="#estudios" className="hover:text-gray-300">Estudios</a>
+            <a href="#skills" className="hover:text-gray-300">Skills</a>
+            <a href="#experiencia" className="hover:text-gray-300">experiencia</a>
+            <a href="#proyectos" className="hover:text-gray-300">Proyectos</a>
+            <a href="#contacto" className="hover:text-gray-300">Contacto</a>
+          </div>
         </div>
-
-
-
-
-    </>
-
-  );
+      </footer>
+    </div>
+  )
 }
 
 

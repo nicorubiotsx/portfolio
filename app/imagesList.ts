@@ -9,10 +9,12 @@ import tailwind from '../img/tailwind.png';
 import insta from '../img/insta.png';
 import whatsapp from '../img/wha.png';
 import profile from '../img/myAvatar.png'
-
+import head from '../img/head.webp'
+import headd from '../img/headd.webp'
 
 export const Profile = profile;
-
+export const Head = head
+export const Headd =headd 
 export const skills = [
 
   js,
