@@ -9,7 +9,8 @@ import './Contact.css';
 // 2. Ingresa tu email y obtén tu Access Key gratis
 // 3. Reemplaza el valor de abajo con tu key
 // ============================================
-const WEB3FORMS_ACCESS_KEY = '222170b1-fc46-4ddb-ae66-27d83cf81cad';
+
+const apiKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 export default function Contact() {
   const [ref, isVisible] = useScrollAnimation(0.1);
@@ -32,7 +33,7 @@ export default function Contact() {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
+          access_key: apiKey,
           name: formData.name,
           email: formData.email,
           message: formData.message,
