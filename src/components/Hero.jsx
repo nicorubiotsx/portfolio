@@ -165,7 +165,7 @@ export default function Hero() {
           </div>
           <div className="stat-divider" />
           <div className="stat">
-            <span className="stat-number">15+</span>
+            <span className="stat-number">6+</span>
             <span className="stat-label">Proyectos completados</span>
           </div>
           <div className="stat-divider" />

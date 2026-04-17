@@ -2,44 +2,46 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import './Experience.css';
 
 const experiences = [
+
   {
     id: 1,
     type: 'work',
-    title: 'Desarrollador Full-Stack',
-    company: 'Empresa Tecnológica',
-    period: '2023 - Presente',
-    description: 'Desarrollo de aplicaciones web escalables utilizando React, Node.js y bases de datos relacionales. Implementación de CI/CD y mejora continua de la arquitectura.',
+    title: 'Desarrollador Web',
+    company: 'AID PROF',
+    period: '2021',
+    description: 'Creación de interfaces de usuario dinámicas y robustas aplicando estándares actuales de desarrollo. para sistema estudiantil',
     achievements: [
-      'Reducción del 40% en tiempos de carga',
-      'Migración exitosa a microservicios',
-      'Mentoring a desarrolladores junior',
+      'Desarrollo de interfaces de alto rendimiento utilizando react.js y TypeScript.',
+      'modelamiento de la base de datos del proyecto, construccion base de proyecto en Django(python)con Postgresql',
+      'implemnetacion modelo vista controlador.',
     ],
-  },
-  {
+  }, {
     id: 2,
     type: 'work',
-    title: 'Desarrollador Frontend',
-    company: 'Agencia Digital',
-    period: '2022 - 2023',
-    description: 'Creación de interfaces de usuario modernas y responsivas para clientes internacionales. Trabajo en equipo ágil con metodología Scrum.',
+    title: 'Desarrollador Móvil',
+    company: 'Stage On VR',
+    period: '2022',
+    description: 'Desarrollo y mantenimiento de aplicaciones móviles utilizando tecnologías modernas para experiencias inmersivas.',
     achievements: [
-      'Desarrollo de 10+ landing pages de alto impacto',
-      'Implementación de design system reutilizable',
+      'Construcción de aplicaciones móviles escalables utilizando React Native.',
+      'Implementación de sistemas de notificaciones push e integración de librerías externas.',
+      'Creación y despliegue de nuevos módulos funcionales desde cero.',
     ],
   },
   {
     id: 3,
-    type: 'education',
-    title: 'Ingeniería Informática',
-    company: 'Universidad',
-    period: '2018 - 2023',
-    description: 'Formación integral en ciencias de la computación, ingeniería de software, bases de datos, redes y sistemas operativos.',
+    type: 'work',
+    title: 'Desarrollador Full-Stack Freelance',
+    company: 'Independiente',
+    period: '2023 - Presente',
+    description: 'Diseño y despliegue de aplicaciones web a medida, centradas en la eficiencia y el uso de arquitecturas modernas.',
     achievements: [
-      'Proyecto de tesis: aplicación web full-stack',
-      'Distinción académica',
+      'Arquitectura e implementación de soluciones robustas utilizando TypeScript y Node.js para la lógica de servidor y persistencia.',
+      'Despliegue de aplicaciones escalables con gestión de autenticación segura y bases de datos relacionales.',
+      'Desarrollo de interfaces interactivas y optimizadas para garantizar una experiencia de usuario fluida.',
     ],
-  },
-];
+  }
+]
 
 export default function Experience() {
   const [ref, isVisible] = useScrollAnimation(0.1);
@@ -57,35 +59,37 @@ export default function Experience() {
 
         <div className={`timeline ${isVisible ? 'animate-in' : ''}`}>
           <div className="timeline-line" />
-          {experiences.map((exp, idx) => (
-            <div
-              className={`timeline-item ${idx % 2 === 0 ? 'left' : 'right'}`}
-              key={exp.id}
-              style={{ transitionDelay: `${idx * 0.15 + 0.2}s` }}
-            >
-              <div className="timeline-dot">
-                <span>{exp.type === 'work' ? '💼' : '🎓'}</span>
-              </div>
+          {[...experiences]
+            .sort((a, b) => parseInt(b.period) - parseInt(a.period))
+            .map((exp, idx) => (
+              <div
+                className={`timeline-item ${idx % 2 === 0 ? 'left' : 'right'}`}
+                key={exp.id}
+                style={{ transitionDelay: `${idx * 0.15 + 0.2}s` }}
+              >
+                <div className="timeline-dot">
+                  <span>{exp.type === 'work' ? '💼' : '🎓'}</span>
+                </div>
 
-              <div className="timeline-card card">
-                <span className="timeline-period">{exp.period}</span>
-                <h3 className="timeline-title">{exp.title}</h3>
-                <h4 className="timeline-company">{exp.company}</h4>
-                <p className="timeline-description">{exp.description}</p>
+                <div className="timeline-card card">
+                  <span className="timeline-period">{exp.period}</span>
+                  <h3 className="timeline-title">{exp.title}</h3>
+                  <h4 className="timeline-company">{exp.company}</h4>
+                  <p className="timeline-description">{exp.description}</p>
 
-                <ul className="timeline-achievements">
-                  {exp.achievements.map((a, i) => (
-                    <li key={i}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{color: 'var(--success)', flexShrink: 0}}>
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      {a}
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="timeline-achievements">
+                    {exp.achievements.map((a, i) => (
+                      <li key={i}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: 'var(--success)', flexShrink: 0 }}>
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>
