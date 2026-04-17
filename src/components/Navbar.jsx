@@ -37,6 +37,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Block body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   const handleNavClick = (href) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
@@ -46,53 +56,75 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container container">
-        <a href="#hero" className="navbar-logo" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}>
-          <span className="logo-bracket">&lt;</span>
-          <span className="logo-text">Dev</span>
-          <span className="logo-bracket">/&gt;</span>
-        </a>
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container container">
+          <a href="#hero" className="navbar-logo" onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}>
+            <span className="logo-bracket">&lt;</span>
+            <span className="logo-text">Dev</span>
+            <span className="logo-bracket">/&gt;</span>
+          </a>
 
-        <div className={`navbar-links ${mobileOpen ? 'open' : ''}`}>
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`nav-link ${activeSection === link.href.replace('#', '') ? 'active' : ''}`}
-              onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+          <div className="navbar-links-desktop">
+            {navLinks.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`nav-link ${activeSection === link.href.replace('#', '') ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+              >
+                {link.label}
+                <span className="nav-link-indicator" />
+              </a>
+            ))}
+          </div>
+
+          <div className="navbar-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              title={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
             >
-              {link.label}
-              <span className="nav-link-indicator" />
-            </a>
-          ))}
-        </div>
+              <div className="toggle-track">
+                <span className={`toggle-icon sun ${theme === 'light' ? 'active' : ''}`}>☀️</span>
+                <span className={`toggle-icon moon ${theme === 'dark' ? 'active' : ''}`}>🌙</span>
+                <span className={`toggle-thumb ${theme === 'dark' ? 'dark' : ''}`} />
+              </div>
+            </button>
 
-        <div className="navbar-actions">
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            title={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
-          >
-            <div className="toggle-track">
-              <span className={`toggle-icon sun ${theme === 'light' ? 'active' : ''}`}>☀️</span>
-              <span className={`toggle-icon moon ${theme === 'dark' ? 'active' : ''}`}>🌙</span>
-              <span className={`toggle-thumb ${theme === 'dark' ? 'dark' : ''}`} />
-            </div>
-          </button>
-
-          <button
-            className={`hamburger ${mobileOpen ? 'open' : ''}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+            <button
+              className={`hamburger ${mobileOpen ? 'open' : ''}`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
+      </nav>
+
+      {mobileOpen && (
+        <div
+          className="mobile-overlay"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      <div className={`navbar-mobile-links ${mobileOpen ? 'open' : ''}`}>
+        {navLinks.map(link => (
+          <a
+            key={link.href}
+            href={link.href}
+            className={`nav-link ${activeSection === link.href.replace('#', '') ? 'active' : ''}`}
+            onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
-    </nav>
+    </>
   );
 }

@@ -139,8 +139,7 @@ export default function Hero() {
 
         <p className="hero-description">
           Transformo ideas en experiencias digitales excepcionales.
-          Especializado en construir aplicaciones web modernas, escalables y
-          con un diseño que enamora.
+          Especializado en construir aplicaciones web modernas y escalables
         </p>
 
         <div className="hero-cta">
@@ -151,7 +150,7 @@ export default function Hero() {
             </svg>
           </button>
           <button className="btn btn-secondary" onClick={scrollToContact}>
-            <span>Contactar</span>
+            <span>Contáctame</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
             </svg>
@@ -176,7 +175,14 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-scroll-indicator">
+      <div
+        className="hero-scroll-indicator"
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        role="button"
+        tabIndex={0}
+        aria-label="Desplazar hacia abajo"
+        onKeyDown={(e) => e.key === 'Enter' && document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+      >
         <div className="scroll-mouse">
           <div className="scroll-wheel" />
         </div>

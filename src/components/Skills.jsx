@@ -27,7 +27,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Base de Datos',
+    title: 'Bases de Datos',
     icon: '🗄️',
     description: 'Almacenamiento y gestión de datos',
     skills: [
@@ -57,7 +57,7 @@ export default function Skills() {
       <div className="container" ref={ref}>
         <div className={`section-header ${isVisible ? 'animate-in' : ''}`}>
           <span className="section-label">// Habilidades</span>
-          <h2 className="section-title">Mi Stack Tecnológico</h2>
+          <h2 className="section-title">Mi stack tecnológico</h2>
           <p className="section-description">
             Herramientas y tecnologías con las que trabajo día a día para crear soluciones robustas.
           </p>

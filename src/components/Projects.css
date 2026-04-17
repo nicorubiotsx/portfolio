@@ -74,9 +74,7 @@
   flex-direction: column;
 }
 
-.project-card.featured {
-  grid-column: span 1;
-}
+
 
 /* Image */
 .project-image {

@@ -53,22 +53,7 @@
   color: var(--text-tertiary);
 }
 
-.footer-made {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
 
-.heart {
-  color: #ef4444;
-  animation: pulse-glow 2s ease-in-out infinite;
-  display: inline-block;
-}
-
-.coffee {
-  display: inline-block;
-  animation: float 3s ease-in-out infinite;
-}
 
 @media (max-width: 768px) {
   .footer-content {

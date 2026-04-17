@@ -9,11 +9,11 @@ const experiences = [
     title: 'Desarrollador Web',
     company: 'AID PROF',
     period: '2021',
-    description: 'Creación de interfaces de usuario dinámicas y robustas aplicando estándares actuales de desarrollo. para sistema estudiantil',
+    description: 'Creación de interfaces de usuario dinámicas y robustas aplicando estándares actuales de desarrollo para un sistema estudiantil.',
     achievements: [
-      'Desarrollo de interfaces de alto rendimiento utilizando react.js y TypeScript.',
-      'modelamiento de la base de datos del proyecto, construccion base de proyecto en Django(python)con Postgresql',
-      'implemnetacion modelo vista controlador.',
+      'Desarrollo de interfaces de alto rendimiento utilizando React.js y TypeScript.',
+      'Modelamiento de la base de datos del proyecto y construcción de la base del proyecto en Django (Python) con PostgreSQL.',
+      'Implementación del patrón Modelo Vista Controlador.',
     ],
   }, {
     id: 2,
@@ -51,7 +51,7 @@ export default function Experience() {
       <div className="container" ref={ref}>
         <div className={`section-header ${isVisible ? 'animate-in' : ''}`}>
           <span className="section-label">// Trayectoria</span>
-          <h2 className="section-title">Experiencia & Educación</h2>
+          <h2 className="section-title">Experiencia & educación</h2>
           <p className="section-description">
             Mi camino profesional y formación académica.
           </p>

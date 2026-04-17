@@ -13,35 +13,18 @@ export default function About() {
         </div>
 
         <div className={`about-grid ${isVisible ? 'animate-in' : ''}`}>
-          <div className="about-image-wrapper">
-            <div className="about-image-container">
-              <div className="about-image-placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{color: 'var(--accent-primary)'}}>
-                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                <span>Tu foto aquí</span>
-              </div>
-              <div className="about-image-decoration" />
-              <div className="about-image-dots" />
-            </div>
-          </div>
 
           <div className="about-content">
             <div className="about-text">
               <p>
-                Soy un <strong>Ingeniero Informático</strong> apasionado por crear soluciones 
-                tecnológicas que marquen la diferencia. Me especializo en el desarrollo de 
-                aplicaciones web modernas utilizando las últimas tecnologías del ecosistema JavaScript.
+                <strong>Ingeniero informático</strong> y desarrollador full-stack con experiencia 
+                en aplicaciones web, móviles y sistemas a medida. He colaborado con empresas 
+                como AID PROF y Stage On VR, y actualmente trabajo de forma independiente.
               </p>
               <p>
-                Mi enfoque combina un sólido conocimiento técnico con una atención especial al 
-                diseño y la experiencia de usuario. Creo firmemente que el código limpio y la 
-                buena arquitectura son la base de productos digitales exitosos.
-              </p>
-              <p>
-                Cuando no estoy programando, me gusta explorar nuevas tecnologías, contribuir a 
-                proyectos open source y compartir conocimiento con la comunidad de desarrollo.
+                Mi stack principal gira en torno a React, Next.js, Node.js, TypeScript y 
+                PostgreSQL. Me apasiona construir productos que combinen buen código con una 
+                experiencia de usuario pensada al detalle.
               </p>
             </div>
 

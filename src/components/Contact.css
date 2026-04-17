@@ -220,4 +220,13 @@
   .contact-grid {
     grid-template-columns: 1fr;
   }
+
+  .contact-info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .form-submit {
+    align-self: stretch;
+  }
 }
